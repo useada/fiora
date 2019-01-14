@@ -19,7 +19,7 @@ const versionRequirements = [
     },
 ];
 
-module.exports = () => {
+(() => {
     const warnings = [];
     for (let i = 0; i < versionRequirements.length; i++) {
         const mod = versionRequirements[i];
@@ -39,4 +39,4 @@ module.exports = () => {
         console.log();
         process.exit(1);
     }
-};
+})();

@@ -5,7 +5,7 @@
   "author": "碎碎酱 <yinxin630@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "./node_modules/.bin/cross-env NODE_ENV=development && nodemon server/main.js --config .nodemonrc",
+    "server": "./node_modules/.bin/cross-env NODE_ENV=development && nodemon server/main.ts --config '.nodemonrc' --exec 'ts-node'",
     "client": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "./node_modules/.bin/eslint ./ --ext js,jsx --ignore-pattern .eslintignore --cache --fix"
@@ -61,6 +61,7 @@
     "xss": "^0.3.7"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.3.7",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
@@ -107,6 +108,8 @@
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "style-loader": "^0.15.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2",
     "url-loader": "^0.5.7",
     "webpack": "^4.5.0",
     "webpack-bundle-analyzer": "^2.11.1",

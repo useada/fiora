@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "noImplicitAny": true,
+        "removeComments": true
+    },
+    "include": [
+        "server/**/*",
+        "client/**/*",
+        "utils/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
