@@ -2,33 +2,51 @@ const options = require('../utils/commandOptions');
 
 const { env } = process;
 
-module.exports = {
-    // service port
-    port: options.port || env.Port || 9200,
+/**
+ * 服务端端口号
+ */
+export const port: number = options.port || env.Port || 9200;
 
-    // mongodb address
-    database: options.database || env.Database || 'mongodb://localhost:27017/fiora',
+/**
+ * 数据地址
+ */
+export const database: string = options.database || env.Database || 'mongodb://localhost:27017/fiora';
 
-    // jwt encryption secret
-    jwtSecret: options.jwtSecret || env.JwtSecret || 'jwtSecret',
+/**
+ * jwt加密密钥
+ */
+export const jwtSecret: string = options.jwtSecret || env.JwtSecret || 'jwtSecret';
 
-    // Maximize the number of groups
-    maxGroupsCount: 3,
+/**
+ * 单个用户最多可创建的群组个数
+ */
+export const maxGroupsCount: number = 3;
 
-    // qiniu config
-    qiniuAccessKey: options.qiniuAccessKey || env.QiniuAccessKey || '',
-    qiniuSecretKey: options.qiniuSecretKey || env.QiniuSecretKey || '',
-    qiniuBucket: options.qiniuBucket || env.QiniuBucket || '',
-    qiniuUrlPrefix: options.qiniuUrlPrefix || env.QiniuUrlPrefix || '',
+/**
+ * 七牛配置
+ */
+export const qiniuAccessKey: string = options.qiniuAccessKey || env.QiniuAccessKey || '';
+export const qiniuSecretKey: string = options.qiniuSecretKey || env.QiniuSecretKey || '';
+export const qiniuBucket: string = options.qiniuBucket || env.QiniuBucket || '';
+export const qiniuUrlPrefix: string = options.qiniuUrlPrefix || env.QiniuUrlPrefix || '';
 
-    allowOrigin: options.allowOrigin || env.AllowOrigin,
+/**
+ * 允许的客户端域
+ * 为空则默认所有域允许访问
+ */
+export const allowOrigin: string = options.allowOrigin || env.AllowOrigin;
 
-    // token expires time
-    tokenExpiresTime: 1000 * 60 * 60 * 24 * 7,
+/**
+ * 用户登录token过期时间
+ */
+export const tokenExpiresTime: number = 1000 * 60 * 60 * 24 * 7;
 
-    // administrator user id
-    administrator: options.administrator || env.Administrator || '',
+/**
+ * 管理员用户的_id
+ */
+export const administrator: string = options.administrator || env.Administrator || '';
 
-    // default group name
-    defaultGroupName: 'fiora',
-};
+/**
+ * 默认群组名称
+ */
+export const defaultGroupName: string = 'fiora';

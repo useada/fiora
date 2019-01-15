@@ -33,4 +33,4 @@ const SocketSchema = new Schema({
 });
 
 const Socket = mongoose.model('Socket', SocketSchema);
-module.exports = Socket;
+export default Socket;

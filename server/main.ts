@@ -1,21 +1,16 @@
 import mongoose from 'mongoose';
 
-import '../build/check-versions'; // 检查node.js和npm版本
+import '../build/checkVersions'; // 检查node.js和npm版本
 
 import app from './app';
-import config from '../config/server';
+import { port, database, defaultGroupName } from '../config/server';
 import Socket from './models/socket';
 import Group from './models/group';
 import getRandomAvatar from '../utils/getRandomAvatar';
 
-global.mdb = new Map(); // 作为内存数据库使用
-global.mdb.set('sealList', new Set()); // 封禁用户列表
-global.mdb.set('newUserList', new Set()); // 新注册用户列表
-
 mongoose.Promise = Promise;
 
-
-mongoose.connect(config.database, async (err) => {
+mongoose.connect(database, async (err) => {
     if (err) {
         console.error('connect database error!');
         console.error(err);
@@ -26,7 +21,7 @@ mongoose.connect(config.database, async (err) => {
     const group = await Group.findOne({ isDefault: true });
     if (!group) {
         const defaultGroup = await Group.create({
-            name: config.defaultGroupName,
+            name: defaultGroupName,
             avatar: getRandomAvatar(),
             isDefault: true,
         });
@@ -36,8 +31,8 @@ mongoose.connect(config.database, async (err) => {
         }
     }
 
-    app.listen(config.port, async () => {
+    app.listen(port, async () => {
         await Socket.remove({}); // 删除Socket表所有历史数据
-        console.log(` >>> server listen on http://localhost:${config.port}`);
+        console.log(` >>> server listen on http://localhost:${port}`);
     });
 });
