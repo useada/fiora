@@ -93,4 +93,4 @@ app.io.on('disconnect', async (ctx) => {
     });
 });
 
-module.exports = app;
+export default app;

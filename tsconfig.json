@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
-        "target": "esnext",
         "noImplicitAny": true,
-        "removeComments": true
+        "removeComments": true,
+        "esModuleInterop": true,
+        "lib": ["es2015"]
     },
     "include": [
         "server/**/*",

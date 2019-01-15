@@ -1,8 +1,8 @@
-const chalk = require('chalk');
-const semver = require('semver');
-const packageConfig = require('../package.json');
+import chalk from 'chalk';
+import semver from 'semver';
+import { node, npm } from './engine';
 
-function exec(cmd) {
+function exec(cmd: string): string {
     return require('child_process').execSync(cmd).toString().trim();
 }
 
@@ -10,12 +10,12 @@ const versionRequirements = [
     {
         name: 'node',
         currentVersion: semver.clean(process.version),
-        versionRequirement: packageConfig.engines.node,
+        versionRequirement: node,
     },
     {
         name: 'npm',
         currentVersion: exec('npm --version'),
-        versionRequirement: packageConfig.engines.npm,
+        versionRequirement: npm,
     },
 ];
 
