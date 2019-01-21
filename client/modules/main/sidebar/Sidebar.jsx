@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import Switch from 'react-switch';
 import ReactLoading from 'react-loading';
 
@@ -73,10 +72,7 @@ class Sidebar extends Component {
         primaryColor: PropTypes.string,
         primaryTextColor: PropTypes.string,
         backgroundImage: PropTypes.string,
-        sound: PropTypes.string,
-        soundSwitch: PropTypes.bool,
         notificationSwitch: PropTypes.bool,
-        voiceSwitch: PropTypes.bool,
         isAdmin: PropTypes.bool,
         userId: PropTypes.string,
     }
@@ -134,7 +130,7 @@ class Sidebar extends Component {
         );
     }
     render() {
-        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, sound, soundSwitch, notificationSwitch, voiceSwitch, isAdmin } = this.props;
+        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, notificationSwitch, isAdmin } = this.props;
         const { settingDialog, userDialog, rewardDialog, infoDialog, appDownloadDialog, backgroundLoading, adminDialog } = this.state;
         if (isLogin) {
             return (
@@ -171,34 +167,11 @@ class Sidebar extends Component {
                             <div>
                                 <p>开关</p>
                                 <div className="switch">
-                                    <p>声音提醒</p>
-                                    <Switch
-                                        onChange={action.setSoundSwitch}
-                                        checked={soundSwitch}
-                                    />
                                     <p>桌面提醒</p>
                                     <Switch
                                         onChange={action.setNotificationSwitch}
                                         checked={notificationSwitch}
                                     />
-                                    <p>语音播报</p>
-                                    <Switch
-                                        onChange={action.setVoiceSwitch}
-                                        checked={voiceSwitch}
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <p>提示音</p>
-                                <div className="sounds">
-                                    <RadioGroup value={sound} onChange={Sidebar.handleSelectSound} horizontal>
-                                        <RadioButton value="default">默认</RadioButton>
-                                        <RadioButton value="apple">苹果</RadioButton>
-                                        <RadioButton value="pcqq">电脑QQ</RadioButton>
-                                        <RadioButton value="mobileqq">手机QQ</RadioButton>
-                                        <RadioButton value="momo">陌陌</RadioButton>
-                                        <RadioButton value="huaji">滑稽</RadioButton>
-                                    </RadioGroup>
                                 </div>
                             </div>
                             <div>
