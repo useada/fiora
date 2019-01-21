@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { TwitterPicker } from 'react-color';
 import Switch from 'react-switch';
-import ReactLoading from 'react-loading';
 
 import action from '@/state/action';
 import socket from '@/socket';
 import Avatar from '@/components/Avatar';
 import IconButton from '@/components/IconButton';
 import Dialog from '@/components/Dialog';
-import Button from '@/components/Button';
 import Message from '@/components/Message';
 import Tooltip from '@/components/Tooltip';
 import setCssVariable from 'utils/setCssVariable';
@@ -71,7 +68,6 @@ class Sidebar extends Component {
         avatar: PropTypes.string,
         primaryColor: PropTypes.string,
         primaryTextColor: PropTypes.string,
-        backgroundImage: PropTypes.string,
         notificationSwitch: PropTypes.bool,
         isAdmin: PropTypes.bool,
         userId: PropTypes.string,
@@ -130,8 +126,8 @@ class Sidebar extends Component {
         );
     }
     render() {
-        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, notificationSwitch, isAdmin } = this.props;
-        const { settingDialog, userDialog, rewardDialog, infoDialog, appDownloadDialog, backgroundLoading, adminDialog } = this.state;
+        const { isLogin, isConnect, avatar, notificationSwitch, isAdmin } = this.props;
+        const { settingDialog, userDialog, rewardDialog, infoDialog, appDownloadDialog, adminDialog } = this.state;
         if (isLogin) {
             return (
                 <div className="module-main-sidebar">
@@ -152,18 +148,10 @@ class Sidebar extends Component {
                         {Sidebar.renderTooltip('下载APP', <IconButton width={40} height={40} icon="app" iconSize={28} onClick={this.toggleAppDownloadDialog} />)}
                         {Sidebar.renderTooltip('打赏', <IconButton width={40} height={40} icon="dashang" iconSize={26} onClick={this.toggleRewardDialog} />)}
                         {Sidebar.renderTooltip('关于', <IconButton width={40} height={40} icon="about" iconSize={26} onClick={this.toggleInfoDialog} />)}
-                        {Sidebar.renderTooltip('设置', <IconButton width={40} height={40} icon="setting" iconSize={26} onClick={this.toggleSettingDialog} />)}
                         {Sidebar.renderTooltip('退出登录', <IconButton width={40} height={40} icon="logout" iconSize={26} onClick={Sidebar.logout} />)}
                     </div>
                     <Dialog className="dialog system-setting" visible={settingDialog} title="系统设置" onClose={this.toggleSettingDialog}>
                         <div className="content">
-                            <div>
-                                <p>恢复</p>
-                                <div className="buttons">
-                                    <Button onClick={Sidebar.resetThume}>恢复默认主题</Button>
-                                    <Button onClick={Sidebar.resetSound}>恢复默认提示音</Button>
-                                </div>
-                            </div>
                             <div>
                                 <p>开关</p>
                                 <div className="switch">
@@ -173,29 +161,6 @@ class Sidebar extends Component {
                                         checked={notificationSwitch}
                                     />
                                 </div>
-                            </div>
-                            <div>
-                                <p>背景图 <span className="background-tip">背景图会被拉伸到浏览器窗口大小, 合理的比例会取得更好的效果</span></p>
-                                <div className="image-preview">
-                                    <img className={backgroundLoading ? 'blur' : ''} src={backgroundImage} onClick={this.selectBackgroundImage} />
-                                    <ReactLoading className={`loading ${backgroundLoading ? 'show' : 'hide'}`} type="spinningBubbles" color={`rgb(${primaryColor}`} height={100} width={100} />
-                                </div>
-                            </div>
-                            <div>
-                                <p>主题颜色</p>
-                                <div className="color-info">
-                                    <div style={{ backgroundColor: `rgb(${primaryColor})` }} />
-                                    <span>{`rgb(${primaryColor})`}</span>
-                                </div>
-                                <TwitterPicker className="color-picker" color={`rgb(${primaryColor})`} onChange={this.handlePrimaryColorChange} />
-                            </div>
-                            <div>
-                                <p>文字颜色</p>
-                                <div className="color-info">
-                                    <div style={{ backgroundColor: `rgb(${primaryTextColor})` }} />
-                                    <span>{`rgb(${primaryTextColor})`}</span>
-                                </div>
-                                <TwitterPicker className="color-picker" color={`rgb(${primaryTextColor})`} onChange={this.handlePrimaryTextColorChange} />
                             </div>
                         </div>
                     </Dialog>

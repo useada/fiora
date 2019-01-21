@@ -2,16 +2,8 @@ import immutable from 'immutable';
 import setCssVariable from '../../utils/setCssVariable';
 import config from '../../config/client';
 
-const primaryColor = window.localStorage.getItem('primaryColor') || config.primaryColor;
-const primaryTextColor = window.localStorage.getItem('primaryTextColor') || config.primaryTextColor;
+const { sound, backgroundImage, primaryColor, primaryTextColor } = config;
 setCssVariable(primaryColor, primaryTextColor);
-
-let backgroundImage = window.localStorage.getItem('backgroundImage');
-if (!backgroundImage) {
-    backgroundImage = config.backgroundImage; // eslint-disable-line
-    window.localStorage.setItem('backgroundImage', backgroundImage);
-}
-const sound = window.localStorage.getItem('sound') || config.sound;
 
 let soundSwitch = window.localStorage.getItem('soundSwitch') || 'true';
 if (soundSwitch === 'true') {
