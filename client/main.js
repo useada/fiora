@@ -22,10 +22,10 @@ import store from './state/store';
 import action from './state/action';
 import socket from './socket';
 import notification from '../utils/notification';
-import sound from '../utils/sound';
+// import sound from '../utils/sound';
 import getFriendId from '../utils/getFriendId';
 // import convertRobot10Message from '../utils/convertRobot10Message';
-import voice from '../utils/voice';
+// import voice from '../utils/voice';
 
 if (window.Notification && (window.Notification.permission === 'default' || window.Notification.permission === 'denied')) {
     window.Notification.requestPermission();
@@ -69,7 +69,7 @@ socket.on('disconnect', () => {
     action.disconnect();
 });
 
-let prevFrom = '';
+// let prevFrom = '';
 socket.on('message', (message) => {
     // robot10
     // convertRobot10Message(message);
@@ -125,29 +125,29 @@ socket.on('message', (message) => {
         );
     }
 
-    if (state.getIn(['ui', 'soundSwitch'])) {
-        const soundType = state.getIn(['ui', 'sound']);
-        sound(soundType);
-    }
+    // if (state.getIn(['ui', 'soundSwitch'])) {
+    //     const soundType = state.getIn(['ui', 'sound']);
+    //     sound(soundType);
+    // }
 
-    if (message.type === 'text' && state.getIn(['ui', 'voiceSwitch'])) {
-        const text = message.content
-            .replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g, '')
-            .replace(/#/g, '');
+    // if (message.type === 'text' && state.getIn(['ui', 'voiceSwitch'])) {
+    //     const text = message.content
+    //         .replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g, '')
+    //         .replace(/#/g, '');
 
-        if (text.length > 100) {
-            return;
-        }
+    //     if (text.length > 100) {
+    //         return;
+    //     }
 
-        const from = linkman && linkman.get('type') === 'group' ?
-            `${message.from.username}在${linkman.get('name')}说`
-            :
-            `${message.from.username}对你说`;
-        if (text) {
-            voice.push(from !== prevFrom ? from + text : text, message.from.username);
-        }
-        prevFrom = from;
-    }
+    //     const from = linkman && linkman.get('type') === 'group' ?
+    //         `${message.from.username}在${linkman.get('name')}说`
+    //         :
+    //         `${message.from.username}对你说`;
+    //     if (text) {
+    //         voice.push(from !== prevFrom ? from + text : text, message.from.username);
+    //     }
+    //     prevFrom = from;
+    // }
 });
 
 ReactDom.render(
