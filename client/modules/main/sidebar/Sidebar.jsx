@@ -76,7 +76,7 @@ class Sidebar extends Component {
         sound: PropTypes.string,
         soundSwitch: PropTypes.bool,
         notificationSwitch: PropTypes.bool,
-        voiceSwitch: PropTypes.bool,
+        /* voiceSwitch: PropTypes.bool, */
         isAdmin: PropTypes.bool,
         userId: PropTypes.string,
     }
@@ -134,7 +134,7 @@ class Sidebar extends Component {
         );
     }
     render() {
-        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, sound, soundSwitch, notificationSwitch, voiceSwitch, isAdmin } = this.props;
+        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, sound, soundSwitch, notificationSwitch, /* voiceSwitch, */ isAdmin } = this.props;
         const { settingDialog, userDialog, rewardDialog, infoDialog, appDownloadDialog, backgroundLoading, adminDialog } = this.state;
         if (isLogin) {
             return (
@@ -181,11 +181,11 @@ class Sidebar extends Component {
                                         onChange={action.setNotificationSwitch}
                                         checked={notificationSwitch}
                                     />
-                                    <p>语音播报</p>
+                                    {/* <p>语音播报</p>
                                     <Switch
                                         onChange={action.setVoiceSwitch}
                                         checked={voiceSwitch}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                             <div>
@@ -291,6 +291,6 @@ export default connect(state => ({
     sound: state.getIn(['ui', 'sound']),
     soundSwitch: state.getIn(['ui', 'soundSwitch']),
     notificationSwitch: state.getIn(['ui', 'notificationSwitch']),
-    voiceSwitch: state.getIn(['ui', 'voiceSwitch']),
+    /* voiceSwitch: state.getIn(['ui', 'voiceSwitch']), */
     userId: state.getIn(['user', '_id']),
 }))(Sidebar);
