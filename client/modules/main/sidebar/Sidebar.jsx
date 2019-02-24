@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TwitterPicker } from 'react-color';
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
+// import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import Switch from 'react-switch';
 import ReactLoading from 'react-loading';
 
@@ -16,7 +16,7 @@ import Message from '@/components/Message';
 import Tooltip from '@/components/Tooltip';
 import setCssVariable from 'utils/setCssVariable';
 import readDiskFile from 'utils/readDiskFile';
-import playSound from 'utils/sound';
+// import playSound from 'utils/sound';
 import booleanStateDecorator from 'utils/booleanStateDecorator';
 import uploadFile from 'utils/uploadFile';
 import OnlineStatus from './OnlineStatus';
@@ -57,15 +57,15 @@ class Sidebar extends Component {
         window.localStorage.removeItem('backgroundImage');
         Message.success('已恢复默认主题');
     }
-    static resetSound() {
-        action.setSound(config.sound);
-        window.localStorage.removeItem('sound');
-        Message.success('已恢复默认提示音');
-    }
-    static handleSelectSound(sound) {
-        playSound(sound);
-        action.setSound(sound);
-    }
+    // static resetSound() {
+    //     action.setSound(config.sound);
+    //     window.localStorage.removeItem('sound');
+    //     Message.success('已恢复默认提示音');
+    // }
+    // static handleSelectSound(sound) {
+    //     playSound(sound);
+    //     action.setSound(sound);
+    // }
     static propTypes = {
         isLogin: PropTypes.bool.isRequired,
         isConnect: PropTypes.bool.isRequired,
@@ -73,8 +73,8 @@ class Sidebar extends Component {
         primaryColor: PropTypes.string,
         primaryTextColor: PropTypes.string,
         backgroundImage: PropTypes.string,
-        sound: PropTypes.string,
-        soundSwitch: PropTypes.bool,
+        /* sound: PropTypes.string,
+        soundSwitch: PropTypes.bool, */
         notificationSwitch: PropTypes.bool,
         /* voiceSwitch: PropTypes.bool, */
         isAdmin: PropTypes.bool,
@@ -134,7 +134,7 @@ class Sidebar extends Component {
         );
     }
     render() {
-        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, sound, soundSwitch, notificationSwitch, /* voiceSwitch, */ isAdmin } = this.props;
+        const { isLogin, isConnect, avatar, primaryColor, primaryTextColor, backgroundImage, /* sound, soundSwitch, */ notificationSwitch, /* voiceSwitch, */ isAdmin } = this.props;
         const { settingDialog, userDialog, rewardDialog, infoDialog, appDownloadDialog, backgroundLoading, adminDialog } = this.state;
         if (isLogin) {
             return (
@@ -165,17 +165,17 @@ class Sidebar extends Component {
                                 <p>恢复</p>
                                 <div className="buttons">
                                     <Button onClick={Sidebar.resetThume}>恢复默认主题</Button>
-                                    <Button onClick={Sidebar.resetSound}>恢复默认提示音</Button>
+                                    {/* <Button onClick={Sidebar.resetSound}>恢复默认提示音</Button> */}
                                 </div>
                             </div>
                             <div>
                                 <p>开关</p>
                                 <div className="switch">
-                                    <p>声音提醒</p>
+                                    {/* <p>声音提醒</p>
                                     <Switch
                                         onChange={action.setSoundSwitch}
                                         checked={soundSwitch}
-                                    />
+                                    /> */}
                                     <p>桌面提醒</p>
                                     <Switch
                                         onChange={action.setNotificationSwitch}
@@ -188,7 +188,7 @@ class Sidebar extends Component {
                                     /> */}
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <p>提示音</p>
                                 <div className="sounds">
                                     <RadioGroup value={sound} onChange={Sidebar.handleSelectSound} horizontal>
@@ -200,7 +200,7 @@ class Sidebar extends Component {
                                         <RadioButton value="huaji">滑稽</RadioButton>
                                     </RadioGroup>
                                 </div>
-                            </div>
+                            </div> */}
                             <div>
                                 <p>背景图 <span className="background-tip">背景图会被拉伸到浏览器窗口大小, 合理的比例会取得更好的效果</span></p>
                                 <div className="image-preview">
