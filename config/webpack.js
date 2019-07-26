@@ -1,7 +1,9 @@
 const path = require('path');
 const options = require('../utils/commandOptions');
 
-const { env } = process;
+const {
+    env
+} = process;
 
 function getFirstNotUndefined(...values) {
     for (const v of values) {
@@ -47,7 +49,7 @@ module.exports = {
             NODE_ENV: '"development"',
         },
         host: 'localhost',
-        port: 8080,
+        port: 8888,
         autoOpenBrowser: true,
         assetsSubDirectory: '.',
         assetsPublicPath: '/',

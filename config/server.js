@@ -1,13 +1,15 @@
 const options = require('../utils/commandOptions');
 
-const { env } = process;
+const {
+    env
+} = process;
 
 module.exports = {
     // service port
     port: options.port || env.Port || 9200,
 
     // mongodb address
-    database: options.database || env.Database || 'mongodb://localhost:27017/fiora',
+    database: options.database || env.Database || 'mongodb://root:123456@127.0.0.1:27017/fiora',
 
     // jwt encryption secret
     jwtSecret: options.jwtSecret || env.JwtSecret || 'jwtSecret',
