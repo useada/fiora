@@ -1,7 +1,7 @@
 const options = require('../utils/commandOptions');
 
 const {
-    env
+    env,
 } = process;
 
 module.exports = {
@@ -29,8 +29,8 @@ module.exports = {
     tokenExpiresTime: 1000 * 60 * 60 * 24 * 7,
 
     // administrator user id
-    administrator: options.administrator || env.Administrator || '',
+    administrator: options.administrator || env.Administrator || '5d3b443b937df94736ee20ac',
 
     // default group name
-    defaultGroupName: 'fiora',
+    defaultGroupName: '北京吃喝玩乐',
 };

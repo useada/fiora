@@ -2,7 +2,7 @@ const path = require('path');
 const options = require('../utils/commandOptions');
 
 const {
-    env
+    env,
 } = process;
 
 function getFirstNotUndefined(...values) {

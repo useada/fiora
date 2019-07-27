@@ -148,13 +148,13 @@ class Sidebar extends Component {
                                 :
                                 null
                         }
-                        <Tooltip placement="right" mouseEnterDelay={0.3} overlay={<span>源码</span>}>
+                        {/* <Tooltip placement="right" mouseEnterDelay={0.3} overlay={<span>源码</span>}>
                             <a href="https://github.com/yinxin630/fiora" target="_black" rel="noopener noreferrer">
                                 <IconButton width={40} height={40} icon="github" iconSize={26} />
                             </a>
-                        </Tooltip>
-                        {Sidebar.renderTooltip('下载APP', <IconButton width={40} height={40} icon="app" iconSize={28} onClick={this.toggleAppDownloadDialog} />)}
-                        {Sidebar.renderTooltip('打赏', <IconButton width={40} height={40} icon="dashang" iconSize={26} onClick={this.toggleRewardDialog} />)}
+                        </Tooltip> */}
+                        {/* {Sidebar.renderTooltip('下载APP', <IconButton width={40} height={40} icon="app" iconSize={28} onClick={this.toggleAppDownloadDialog} />)} */}
+                        {/* {Sidebar.renderTooltip('打赏', <IconButton width={40} height={40} icon="dashang" iconSize={26} onClick={this.toggleRewardDialog} />)} */}
                         {Sidebar.renderTooltip('关于', <IconButton width={40} height={40} icon="about" iconSize={26} onClick={this.toggleInfoDialog} />)}
                         {Sidebar.renderTooltip('设置', <IconButton width={40} height={40} icon="setting" iconSize={26} onClick={this.toggleSettingDialog} />)}
                         {Sidebar.renderTooltip('退出登录', <IconButton width={40} height={40} icon="logout" iconSize={26} onClick={Sidebar.logout} />)}
@@ -239,25 +239,30 @@ class Sidebar extends Component {
                     <Dialog className="dialog fiora-info " visible={infoDialog} title="关于" onClose={this.toggleInfoDialog}>
                         <div className="content">
                             <div>
-                                <p>作者主页</p>
-                                <a href="https://suisuijiang.com" target="_black" rel="noopener noreferrer">https://suisuijiang.com</a>
+                                <p>talk.link</p>
+                                <ul>
+                                    <li>talk.link使用fiora搭建，感谢yinxin630开发了这么棒的聊天程序，还把它开源出来~~~</li>
+                                    <li>yinxin630 的主页 <a href="https://suisuijiang.com" target="_black" rel="noopener noreferrer">https://suisuijiang.com</a></li>
+
+                                    <li>至于为什么会搭建这个网站，是因为最近在读《社交天性》这本书，我相信书中说的，社交是人类的天性。所以，我想以运营一个聊天室的方式，从另外一个角度，实践书中的理论。</li>
+                                </ul>
                             </div>
-                            <div>
+                            {/* <div>
                                 <p>如何运行</p>
                                 <a href="https://github.com/yinxin630/fiora/blob/master/doc/INSTALL.ZH.md" target="_black" rel="noopener noreferrer">https://github.com/yinxin630/fiora/blob/master/doc/INSTALL.ZH.md</a>
                             </div>
                             <div>
                                 <p>架构 / 设计思路</p>
                                 <a href="https://github.com/yinxin630/blog/issues/3" target="_black" rel="noopener noreferrer">https://github.com/yinxin630/blog/issues/3</a>
-                            </div>
+                            </div> */}
                             <div>
-                                <p>将fiora安装到主屏(PWA)</p>
+                                <p>将 talk.link 安装到主屏(PWA)</p>
                                 <ul>
                                     <li>地址栏输入: Chrome://flags</li>
                                     <li>搜索并启用以下项目: Desktop PWAs(桌面PWAs)、App Banners(应用横幅)、Experimental App Banners(实验性应用横幅)</li>
                                     <li>重启浏览器使修改的设置生效</li>
                                     <li>点击地址栏最右边按钮</li>
-                                    <li>选择&quot;安装 fiora&quot;</li>
+                                    <li>选择&quot;安装 talk.link&quot;</li>
                                 </ul>
                             </div>
                             <div>

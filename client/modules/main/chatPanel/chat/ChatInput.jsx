@@ -112,27 +112,27 @@ class ChatInput extends Component {
         }
 
         switch (key) {
-        case 'image': {
-            this.handleSelectFile();
-            break;
-        }
-        case 'huaji': {
-            this.sendHuaji();
-            break;
-        }
-        case 'code': {
-            this.setState({
-                codeInputVisible: true,
-            });
-            break;
-        }
-        case 'expression': {
-            this.setState({
-                expressionSearchVisible: true,
-            });
-            break;
-        }
-        default:
+            case 'image': {
+                this.handleSelectFile();
+                break;
+            }
+            case 'huaji': {
+                this.sendHuaji();
+                break;
+            }
+            case 'code': {
+                this.setState({
+                    codeInputVisible: true,
+                });
+                break;
+            }
+            case 'expression': {
+                this.setState({
+                    expressionSearchVisible: true,
+                });
+                break;
+            }
+            default:
         }
     }
     handleCodeEditorClose = () => {
@@ -466,7 +466,7 @@ class ChatInput extends Component {
                     <form autoComplete="off" action="javascript:void(0);">
                         <input
                             type="text"
-                            placeholder="代码会写了吗, 给加薪了吗, 股票涨了吗, 来吐槽一下吧~~"
+                            placeholder="今天开心么~~"
                             maxLength="2048"
                             autofoucus="true"
                             ref={i => this.message = i}
