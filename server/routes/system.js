@@ -1,5 +1,7 @@
 const bluebird = require('bluebird');
-const fs = bluebird.promisifyAll(require('fs'), { suffix: '$' });
+const fs = bluebird.promisifyAll(require('fs'), {
+    suffix: '$'
+});
 const path = require('path');
 const axios = require('axios');
 const assert = require('assert');
@@ -7,14 +9,18 @@ const ip = require('ip');
 const User = require('../models/user');
 const Group = require('../models/group');
 const config = require('../../config/server');
-const { SealTimeout } = require('../../utils/const');
+const {
+    SealTimeout
+} = require('../../utils/const');
 
 let baiduToken = '';
 let lastBaiduTokenTime = Date.now();
 
 module.exports = {
     async search(ctx) {
-        const { keywords } = ctx.data;
+        const {
+            keywords
+        } = ctx.data;
         if (keywords === '') {
             return {
                 users: [],
@@ -22,14 +28,23 @@ module.exports = {
             };
         }
 
-        const users = await User.find(
-            { username: { $regex: keywords } },
-            { avatar: 1, username: 1 },
-        );
-        const groups = await Group.find(
-            { name: { $regex: keywords } },
-            { avatar: 1, name: 1, members: 1 },
-        );
+        const users = await User.find({
+            username: {
+                $regex: keywords
+            }
+        }, {
+            avatar: 1,
+            username: 1
+        }, );
+        const groups = await Group.find({
+            name: {
+                $regex: keywords
+            }
+        }, {
+            avatar: 1,
+            name: 1,
+            members: 1
+        }, );
 
         return {
             users,
@@ -42,7 +57,9 @@ module.exports = {
         };
     },
     async searchExpression(ctx) {
-        const { keywords } = ctx.data;
+        const {
+            keywords
+        } = ctx.data;
         if (keywords === '') {
             return [];
         }
@@ -55,7 +72,9 @@ module.exports = {
     },
     async getBaiduToken() {
         if (baiduToken && Date.now() < lastBaiduTokenTime) {
-            return { token: baiduToken };
+            return {
+                token: baiduToken
+            };
         }
 
         const res = await axios.get('https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=pw152BzvaSZVwrUf3Z2OHXM6&client_secret=fa273cc704b080e85ad61719abbf7794');
@@ -63,13 +82,19 @@ module.exports = {
 
         baiduToken = res.data.access_token;
         lastBaiduTokenTime = Date.now() + (res.data.expires_in - 60 * 60 * 24) * 1000;
-        return { token: baiduToken };
+        return {
+            token: baiduToken
+        };
     },
     async sealUser(ctx) {
-        const { username } = ctx.data;
+        const {
+            username
+        } = ctx.data;
         assert(username !== '', 'username不能为空');
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({
+            username
+        });
         assert(user, '用户不存在');
 
         const userId = user._id.toString();
@@ -88,23 +113,29 @@ module.exports = {
     async getSealList() {
         const sealList = global.mdb.get('sealList');
         const userIds = [...sealList.keys()];
-        const users = await User.find({ _id: { $in: userIds } });
+        const users = await User.find({
+            _id: {
+                $in: userIds
+            }
+        });
         const result = users.map(user => user.username);
         return result;
     },
     async uploadFile(ctx) {
         assert(
-            config.qiniuAccessKey === ''
-            || config.qiniuBucket === ''
-            || config.qiniuBucket === ''
-            || config.qiniuUrlPrefix === '',
+            config.qiniuAccessKey === '' ||
+            config.qiniuBucket === '' ||
+            config.qiniuBucket === '' ||
+            config.qiniuUrlPrefix === '',
             '已配置七牛, 请使用七牛文件上传',
         );
 
         try {
             await fs.writeFile$(path.resolve(__dirname, `../../public/${ctx.data.fileName}`), ctx.data.file);
             return {
-                url: `${process.env.NODE_ENV === 'production' ? '' : `http://${ip.address()}:${config.port}`}/${ctx.data.fileName}`,
+                // url: `${process.env.NODE_ENV === 'production' ? '' : `http://${ip.address()}:${config.port}`}/${ctx.data.fileName}`,
+                url: `${process.env.NODE_ENV.trim() === 'production' ? '' : `http://${ip.address()}:${config.port}`}/${ctx.data.fileName}`,
+
             };
         } catch (err) {
             console.error(err);
