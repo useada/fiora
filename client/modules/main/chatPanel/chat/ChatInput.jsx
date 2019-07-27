@@ -112,27 +112,27 @@ class ChatInput extends Component {
         }
 
         switch (key) {
-            case 'image': {
-                this.handleSelectFile();
-                break;
-            }
-            case 'huaji': {
-                this.sendHuaji();
-                break;
-            }
-            case 'code': {
-                this.setState({
-                    codeInputVisible: true,
-                });
-                break;
-            }
-            case 'expression': {
-                this.setState({
-                    expressionSearchVisible: true,
-                });
-                break;
-            }
-            default:
+        case 'image': {
+            this.handleSelectFile();
+            break;
+        }
+        case 'huaji': {
+            this.sendHuaji();
+            break;
+        }
+        case 'code': {
+            this.setState({
+                codeInputVisible: true,
+            });
+            break;
+        }
+        case 'expression': {
+            this.setState({
+                expressionSearchVisible: true,
+            });
+            break;
+        }
+        default:
         }
     }
     handleCodeEditorClose = () => {
